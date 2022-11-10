@@ -3,7 +3,7 @@ import GitHubImage from "../../../public/GitHub-Mark-Light-32px.png";
 import Image from "next/image";
 import Link from "next/link";
 import { imageType } from "../../lib/imageType";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Pagination } from "../../components/Pagination";
 import { ListHeader } from "../../components/ListHeader";
 
