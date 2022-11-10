@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-
 import GitHubImage from "../../../public/GitHub-Mark-Light-32px.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -159,12 +158,11 @@ export default function List(props: ListProps) {
               >
                 <Image
                   className="rounded-xl border-2 border-blue-200"
-                  loader={() => imageType(el.language)}
                   src={imageType(el.language)}
                   alt="avatar"
+                  width={80}
                   quality={100}
                   height={80}
-                  width={80}
                 />
                 <div className="flex flex-grow justify-between py-3 px-10">
                   <div>
