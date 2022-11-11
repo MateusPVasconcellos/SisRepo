@@ -3,14 +3,13 @@ import LogoImage from "../../public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import GitHubImage from "../../public/GitHub-Mark-Light-32px.png";
-import { UserProps } from "../pages/repositorie/[user]";
+import { UserDataProps } from "../pages/repositorie/user";
 
 interface ListHeaderProps {
-  user: UserProps;
+  user: UserDataProps;
 }
 
 export const ListHeader = ({ user }: ListHeaderProps) => {
-  console.log(user);
   return (
     <div className="flex justify-center">
       <header className="mt-4 box-border w-3/4 p-3">
@@ -28,7 +27,7 @@ export const ListHeader = ({ user }: ListHeaderProps) => {
             <div className="mt-2 flex">
               <p>{user.name}</p>
             </div>
-            <div className="mt-4 flex text-xl">
+            <nav className="mt-4 flex text-xl">
               <Link className="flex" target="_blank" href={user.githubUrl}>
                 Clique aqui para ver no GitHub
                 <Image
@@ -38,7 +37,7 @@ export const ListHeader = ({ user }: ListHeaderProps) => {
                   src={GitHubImage}
                 />
               </Link>
-            </div>
+            </nav>
           </div>
 
           <Image

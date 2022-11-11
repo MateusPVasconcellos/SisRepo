@@ -1,11 +1,11 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import GitHubImage from "../../../public/GitHub-Mark-Light-32px.png";
 import Image from "next/image";
 import Link from "next/link";
 import { imageType } from "../../lib/imageType";
-import { useContext, useState } from "react";
 import { Pagination } from "../../components/Pagination";
 import { ListHeader } from "../../components/ListHeader";
+import { useState } from "react";
+import { useSearch } from "../../hooks/useSearch";
 
 interface Owner {
   login: string;
@@ -28,7 +28,7 @@ interface Owner {
   site_admin: boolean;
 }
 
-interface User {
+export interface User {
   id: number;
   node_id: string;
   name: string;
@@ -110,13 +110,10 @@ interface User {
   default_branch: string;
 }
 
-export interface UserProps {
+export interface UserDataProps {
   name: string;
   avatarUrl: string;
   githubUrl: string;
-}
-
-interface RepoProps {
   key: string;
   repoName: string;
   repoUrl: string;
@@ -125,25 +122,20 @@ interface RepoProps {
   language: string;
 }
 
-interface ListProps {
-  user: UserProps[];
-  repo: RepoProps[];
-}
-
-export default function List(props: ListProps) {
+export default function List() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itensPerPage] = useState<number>(5);
+  const { userData } = useSearch();
 
   const indexOfLastItem = currentPage * itensPerPage;
   const indexOfFirstItem = indexOfLastItem - itensPerPage;
-  const currentItens = props.repo.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItens = userData.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className="mx-auto text-white">
-      <ListHeader user={props.user[0]} />
-
+      <ListHeader user={userData[0]} />
       <div className="flex justify-center">
         <h1 className="mt-5 text-3xl">Repositórios</h1>
       </div>
@@ -180,7 +172,7 @@ export default function List(props: ListProps) {
           <Pagination
             paginate={paginate}
             itensPerPage={itensPerPage}
-            totalItens={props.repo.length}
+            totalItens={userData.length}
             currentPage={currentPage}
           />
         </main>
@@ -188,34 +180,3 @@ export default function List(props: ListProps) {
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}: GetServerSidePropsContext) => {
-  const user = params?.user;
-  const response = await fetch(`https://api.github.com/users/${user}/repos`);
-  const data = await response.json();
-  const repoData: User[] = data.map((e: User) => {
-    return {
-      key: e.id,
-      repoName: e.name,
-      repoUrl: e.html_url,
-      createdAt: e.created_at,
-      updatedAt: e.updated_at,
-      language: e.language,
-    };
-  });
-  const userData: User[] = data.map((e: User) => {
-    return {
-      name: e.owner.login,
-      avatarUrl: e.owner.avatar_url,
-      githubUrl: e.owner.html_url,
-    };
-  });
-  return {
-    props: {
-      user: userData,
-      repo: repoData,
-    },
-  };
-};
