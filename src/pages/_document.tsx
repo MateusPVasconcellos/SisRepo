@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 export default function Document() {
   return (
-    <Html>
+    <Html className="h-screen w-screen">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

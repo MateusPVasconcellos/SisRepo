@@ -11,44 +11,46 @@ interface ListHeaderProps {
 
 export const ListHeader = ({ user }: ListHeaderProps) => {
   return (
-    <div className="flex justify-center">
-      <header className="mt-4 box-border w-3/4 p-3">
-        <div className="flex justify-between">
-          <Image
-            className="rounded-xl border-2 border-blue-200"
-            loader={() => user.avatarUrl}
-            src={user.avatarUrl}
-            alt="avatar"
-            quality={100}
-            height={100}
-            width={100}
-          />
-          <div className="ml-8 flex-1 text-2xl">
-            <div className="mt-2 flex">
-              <p>{user.name}</p>
-            </div>
-            <nav className="mt-4 flex text-xl">
-              <Link className="flex" target="_blank" href={user.githubUrl}>
-                Clique aqui para ver no GitHub
-                <Image
-                  className="ml-2 w-7"
-                  quality={100}
-                  alt="github"
-                  src={GitHubImage}
-                />
-              </Link>
-            </nav>
-          </div>
+    <header className="mt-4 box-border flex w-full md:justify-between">
+      <Image
+        className="h-16 w-16 rounded-xl border-2 border-blue-200 md:h-36 md:w-36"
+        loader={() => user.avatarUrl}
+        src={user.avatarUrl}
+        alt="avatar"
+        quality={100}
+        height={0}
+        width={0}
+      />
 
-          <Image
-            src={LogoImage}
-            alt="SisRepo"
-            quality={100}
-            height={100}
-            width={100}
-          />
+      <div className="ml-4 flex-1 md:ml-10">
+        <div className="mt-1 text-xl md:text-4xl">
+          <p>{user.name}</p>
         </div>
-      </header>
-    </div>
+        <nav className="mt-3 md:mt-14">
+          <Link
+            className="flex items-center text-xs md:mt-4 md:text-xl"
+            target="_blank"
+            href={user.githubUrl}
+          >
+            Clique aqui para ver no GitHub
+            <Image
+              className="h-0 w-0 md:ml-2 md:h-5 md:w-5"
+              quality={100}
+              alt="github"
+              src={GitHubImage}
+            />
+          </Link>
+        </nav>
+      </div>
+
+      <Image
+        className="h-16 w-16 md:h-36 md:w-36"
+        src={LogoImage}
+        alt="SisRepo"
+        quality={100}
+        height={0}
+        width={0}
+      />
+    </header>
   );
 };

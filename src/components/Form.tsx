@@ -33,7 +33,7 @@ function Form() {
       onSubmit={(e) => onSubmit(e)}
     >
       <input
-        className="flex w-2/5 rounded-md border border-gray-600 bg-gray-800 py-4 px-6 text-gray-100"
+        className="flex w-3/4 rounded-md border border-gray-600 bg-gray-800 py-4 px-6 text-gray-100 md:w-2/4"
         type="text"
         required
         placeholder="Qual nome do usuário?"
@@ -44,7 +44,7 @@ function Form() {
       {showErrors && <span className="mt-2 text-red-500">{errors.user}</span>}
       {error && <span className="text-red-500">{error}</span>}
       <button
-        className="mt-10 w-1/3 rounded bg-yellow-500 px-6 py-4 text-sm font-bold uppercase text-gray-900 hover:bg-yellow-600"
+        className="mt-10 w-2/3 rounded bg-yellow-500 px-6 py-4 text-sm font-bold uppercase text-gray-900 hover:bg-yellow-600 md:w-2/5"
         type="submit"
       >
         {isSearchLoading ? "Carregando..." : "Pesquisar Repositórios"}
