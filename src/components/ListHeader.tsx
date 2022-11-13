@@ -11,7 +11,7 @@ interface ListHeaderProps {
 
 export const ListHeader = ({ user }: ListHeaderProps) => {
   return (
-    <header className="mt-4 box-border flex w-full md:justify-between">
+    <header className="mt-4 box-border flex w-full">
       <Image
         className="h-16 w-16 rounded-xl border-2 border-blue-200 md:h-36 md:w-36"
         loader={() => user.avatarUrl}
@@ -44,7 +44,7 @@ export const ListHeader = ({ user }: ListHeaderProps) => {
       </div>
 
       <Image
-        className="h-16 w-16 md:h-36 md:w-36"
+        className="h-16 w-16 md:mr-2 md:h-36 md:w-36"
         src={LogoImage}
         alt="SisRepo"
         quality={100}
