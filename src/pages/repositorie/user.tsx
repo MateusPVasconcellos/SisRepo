@@ -160,7 +160,7 @@ export default function List() {
                     width={0}
                     height={0}
                   />
-                  <div className="flex flex-grow items-center justify-between py-3 px-4 md:py-6 md:text-xl">
+                  <div className="flex flex-grow items-center justify-between py-3 px-4 md:py-5 md:text-xl">
                     <div>
                       <p>{el.repoName}</p>
                     </div>
