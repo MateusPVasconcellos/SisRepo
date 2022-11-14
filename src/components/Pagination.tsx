@@ -1,11 +1,18 @@
 import React from "react";
 
+interface PaginationProps {
+  itensPerPage: number;
+  totalItens: number;
+  paginate: (param: number) => void;
+  currentPage: number;
+}
+
 export const Pagination = ({
   itensPerPage,
   totalItens,
   paginate,
   currentPage,
-}: any) => {
+}: PaginationProps) => {
   const pageNumber = [];
 
   for (let i = 1; i <= Math.ceil(totalItens / itensPerPage); i++) {

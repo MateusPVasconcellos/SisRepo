@@ -6,7 +6,8 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { User, UserDataProps } from "../pages/repositorie/user";
+import { UserDataProps } from "../pages/repositorie/user";
+import { User } from "../interfaces/user";
 
 interface SearchProviderProps {
   children: ReactNode;
